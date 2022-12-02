@@ -20,6 +20,6 @@ pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth
 
 ## Step 4: Create Google Project
 You will need to create a project in the Google Developer Console, allow APIs, and create credentials.
-([Python Quickstart](https://developers.google.com/admin-sdk/directory/v1/quickstart/python)))
+([Python Quickstart](https://developers.google.com/admin-sdk/directory/v1/quickstart/python))
 
 You are ready to start coding with Python and the Google Client Libraries.
