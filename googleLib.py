@@ -45,10 +45,16 @@ def groupList(email):
 def getUserInfo(email):
   service = getCredentials()
   userDump = service.users().get(userKey=email, projection='full', viewType='admin_view').execute()
-  print("getUser running")
-#  for key, value in result.items():
-#    print(f'{key}: {value}')
   return userDump
+
+# Get group information for a specific group email address, returns as dictionary
+# include needed: from googleLib import getGroup
+# groupDump = getGroup(email)
+def getGroup(email):
+  print('running getGroup')
+  service = getCredentials()
+  groupDump = service.groups().get(groupKey=email).execute()
+  return groupDump
 
 # Create a user based on the userRecord
 # include needed: from googleLib import createUser
