@@ -10,9 +10,11 @@ You need PIP (or PIP3) installed.  On a Mac, this should already be installed wi
 
 ## Step 3: Google Client Libraries
 You need the Google Client Libraries (which are installed with PIP\PIP3)
-> pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+'''
+pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 or
-> pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+'''
 
 ## Step 4: Create Google Project
 You will need to create a project in the Google Developer Console, allow APIs, and create credentials.
