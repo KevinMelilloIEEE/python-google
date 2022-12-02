@@ -34,3 +34,13 @@ All of my private data (to NOT be included in this repository) is in
 ~/python-google-data
 ```
 This includes any connection details and data files that you must create on your end.  When necessary, I will outline the format of these files, so the code can be used on your end, without releasing any private information.
+
+## googleLib.py
+This is a bunch of functions I have developed.  Each function is documented within the code. Here is a small summary of what is included.
+```
+getCredentials - creates a connection to Google through scopes, and authentication
+groupList - grab and return a list of all groups for a specific email address.
+getUserInfo - grab and return all user info for a specific email address.
+createUser - creates a user based on a specified user record
+addAlias - add an alias to an account based on a specific email address
+```
