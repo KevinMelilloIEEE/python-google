@@ -8,7 +8,6 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
 # Global Variables
-lCreds = os.path.expanduser('~/python-google-data/ldap-creds')
 gCreds = os.path.expanduser('~/python-google-data/credentials.json')
 gToken = os.path.expanduser('~/python-google-data/token.json')
 SCOPES = ['https://www.googleapis.com/auth/admin.directory.user', 'https://www.googleapis.com/auth/admin.directory.group']
