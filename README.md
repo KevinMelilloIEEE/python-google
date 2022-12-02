@@ -45,7 +45,6 @@ createUser - creates a user based on a specified user record
 addAlias - add an alias to an account based on a specific email address
 ```
 ### ~/python-google-data/credentials.json
-This file is created (and downloaded) from the Google Developer Console for your project.  
-([Python Quickstart](https://developers.google.com/admin-sdk/directory/v1/quickstart/python))
+This file is created (and downloaded) from the Google Developer Console for your project. ([Python Quickstart](https://developers.google.com/admin-sdk/directory/v1/quickstart/python))
 ### ~/python-google-data/token.json
 This file is created the first time you run your project.  If you change any of the scopes, you must delete this file, and it will be recreated.
