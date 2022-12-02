@@ -3,7 +3,7 @@ These are the scripts we use to automate some of our procedures that deal with G
 
 ## Step 1: Python 3
 You need to make sure you have Python 3 installed. 
-[Python Downloads]([https://pages.github.com/](https://www.python.org/downloads/))
+([Python Downloads](https://www.python.org/downloads/))
 
 ## Step 2: PIP
 You need PIP (or PIP3) installed.  On a Mac, this should already be installed with Python3, and is called pip3
