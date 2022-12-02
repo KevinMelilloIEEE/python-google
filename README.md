@@ -27,10 +27,10 @@ You are ready to start coding with Python and the Google Client Libraries.
 ## Notes
 All of my scripts are in 
 ```
-> ~/python-google
+~/python-google
 ```
 All of my private data (to NOT be included in this repository) is in
 ```
-> ~/python-google-data
+~/python-google-data
 ```
 This includes any connection details and data files that you must create on your end
