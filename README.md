@@ -44,3 +44,6 @@ getUserInfo - grab and return all user info for a specific email address.
 createUser - creates a user based on a specified user record
 addAlias - add an alias to an account based on a specific email address
 ```
+### ~/python-google-data/credentials.json
+This file is created (and downloaded) from the Google Developer Console for your project.  
+([Python Quickstart](https://developers.google.com/admin-sdk/directory/v1/quickstart/python))
