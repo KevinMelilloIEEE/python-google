@@ -60,7 +60,7 @@ def getGroup(email):
 # include needed: from googleLib import createUser
 # status = createUser(userRecord)
 # userRecord is a dictionary with the following mandatory items
-# userRecord = {'primaryEmail': 'email@ieee.org', 'password': 'testtewttettest', 'name': { 'givenName': 'KevTest', 'familyName': 'KevTestEnd' }, 'orgUnitPath': '/Staff'}
+# userRecord = {'primaryEmail': <email address>, 'password': <password>, 'name': { 'givenName': <firstName>, 'familyName': <lastName> }, 'orgUnitPath': <orgUnit>}
 def createUser(userRecord):
   service = getCredentials()
   status = service.users().insert(body=userRecord).execute()
