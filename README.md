@@ -12,7 +12,9 @@ You need PIP (or PIP3) installed.  On a Mac, this should already be installed wi
 You need the Google Client Libraries (which are installed with PIP\PIP3)
 ```
 pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+```
 or
+```
 pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 ```
 
