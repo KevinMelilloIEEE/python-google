@@ -25,7 +25,7 @@ You will need to create a project in the Google Developer Console, allow APIs, a
 You are ready to start coding with Python and the Google Client Libraries.
 
 ## Notes
-All of my scripts are in 
+All of my scripts (which will be included in this repository) are in 
 ```
 ~/python-google
 ```
@@ -33,4 +33,4 @@ All of my private data (to NOT be included in this repository) is in
 ```
 ~/python-google-data
 ```
-This includes any connection details and data files that you must create on your end
+This includes any connection details and data files that you must create on your end.  When necessary, I will outline the format of these files, so the code can be used on your end, without releasing any private information.
