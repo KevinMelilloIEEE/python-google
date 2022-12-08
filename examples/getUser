@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+#test
+import sys
+sys.dont_write_bytecode = True
+from googleLib import getUserInfo
+from googleLib import getCredentials
+
+def main():
+  l = len(sys.argv)
+  if l == 2:
+    try:
+      userDump = getUserInfo(sys.argv[1])
+    except:
+      print('Please provide a valid email address.  For example:')
+      print('./getUser <email address>')
+      exit()
+  else:
+    print('Wrong number of arguments specified, require only 1')
+    print('Please provide a valid email address.  For example:')
+    print('./getUser <email address>')
+    exit()
+  for key, value in userDump.items():
+    print(f'{key}: {value}')
+
+if __name__ == '__main__':
+  main()
