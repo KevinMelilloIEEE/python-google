@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+#test
+import sys
+sys.dont_write_bytecode = True
+from googleLib import *
+
+def main():
+  l = len(sys.argv)
+  if l != 2:
+    print('Please provide a valid email address.  For example:')
+    print('./checkAlias <email address>')
+    exit()
+  else:
+    try:
+      infoDump = getUserInfo(sys.argv[1])
+    except:
+      infoDump = getGroup(sys.argv[1])
+  for key, value in infoDump.items():
+    if key == 'kind':
+      if value == 'admin#directory#user':
+        aliasType = 'User'
+      if value == 'admin#directory#group':
+        aliasType = 'Group'
+        
+  if aliasType == 'User':
+    print('Email address (' + sys.argv[1] + ') is a User')
+    print('')                                                                                                               print(infoDump)
+  elif aliasType == 'Group':
+    listOwners = []
+    print('Email address (' + sys.argv[1] + ') is a Group')
+    membersDump = getMembers(sys.argv[1])
+    for key, value in membersDump.items():
+      if key == 'members':
+        for x in range(len(value)):
+          if value[x]['role'] == 'MANAGER':
+            listOwners.append(value[x]['email'])
+    print("List Owners:", listOwners)
+  else:
+    pass
+
+if __name__ == '__main__':
+  main()
