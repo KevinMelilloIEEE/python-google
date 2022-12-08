@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+import sys
+sys.dont_write_bytecode = True
+from googleLib import addAlias
+from googleLib import getCredentials
+
+# Global Variables - make sure these are correct for your environment before testing
+primaryEmail = 'user@domain.com'
+aliasEmail = 'user_alias@domain.com'
+
+def main():
+  aliasRecord = {'alias': aliasEmail}
+  status = addAlias(primaryEmail, aliasRecord)
+  print(status)
+
+if __name__ == '__main__':
+  main()
