@@ -7,3 +7,5 @@ Provide the email address and alias within the script, and it will add the alias
 Provide an email address on the command-line, and it will show you all the groups the email address is in.
 ## checkAlias
 Provide the email address on the command-line and it will return user or group, along with relavent information.
+## getUser
+Provide the email address for a user account, and it will pull a report for that user similar to GAM.
