@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+import sys
+import random
+import string
+sys.dont_write_bytecode = True
+from googleLib import createUser
+from googleLib import getCredentials
+
+# Global Variables - Make sure these are all valid for your domain before testing
+primaryEmail = 'user@domain.com'
+givenName = 'firstName'
+familyName = 'lastName'
+orgUnitPath = '/Staff'
+
+# Generate a random 16 digit password for the userRecord to use
+def generatePassword():
+    # choose from all lowercase letter
+    letters = string.ascii_lowercase
+    password = ''.join(random.choice(letters) for i in range(16))
+    return password
+
+# Uses a static userRecord to create a user... this is just sample code, to prove it works.
+# Delete the record on the Google side, and run the code, and it will create the user
+def main():
+  userRecord = {'primaryEmail': primaryEmail, 'password': generatePassword(), 'name': { 'givenName': givenName, 'familyName': familyName }, 'orgUnitPath': orgUnitPath}
+  createStatus = createUser(userRecord)
+  print(createStatus)
+
+if __name__ == '__main__':
+  main()
