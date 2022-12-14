@@ -8,9 +8,10 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
 # Global Variables
+lCreds = os.path.expanduser('~/python-google-data/ldap-creds')
 gCreds = os.path.expanduser('~/python-google-data/credentials.json')
 gToken = os.path.expanduser('~/python-google-data/token.json')
-SCOPES = ['https://www.googleapis.com/auth/admin.directory.user', 'https://www.googleapis.com/auth/admin.directory.group']
+SCOPES = ['https://www.googleapis.com/auth/admin.directory.user', 'https://www.googleapis.com/auth/admin.directory.group', 'https://www.googleapis.com/auth/gmail.settings.sharing']
 
 # Create connection to Google through scopes and OAuth2
 # include needed: from googleLib import getCredentials
@@ -51,9 +52,26 @@ def getUserInfo(email):
 # include needed: from googleLib import getGroup
 # groupDump = getGroup(email)
 def getGroup(email):
-  print('running getGroup')
   service = getCredentials()
   groupDump = service.groups().get(groupKey=email).execute()
+  return groupDump
+
+# Get all members for a specific group email address, returns as dictionary
+# include needed: from googleLib import getMembers
+# membersDump = getMembers(email)
+def getMembers(email):
+  service = getCredentials()
+  membersDump = service.members().list(groupKey=email).execute()
+  return membersDump
+
+# This will add a specific email address to a specific group, returns as the result code
+# include needed: from googleLib import addToGroup
+# groupAdd = addToGroup(group, email)
+def addToGroup(group,email):
+  print(group, email)
+  service = getCredentials()
+  groupKey = {"email": email, "kind": "admin#directory#member", "role": "MEMBER"}
+  groupDump = service.members().insert(groupKey=group, body=groupKey).execute()
   return groupDump
 
 # Create a user based on the userRecord
