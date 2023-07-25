@@ -52,3 +52,10 @@ nUser - query LDAP for extended info, then create the user in Google
 This file is created (and downloaded) from the Google Developer Console for your project. ([Python Quickstart](https://developers.google.com/admin-sdk/directory/v1/quickstart/python))
 ### ~/python-google-data/token.json
 This file is created the first time you run your project.  If you change any of the scopes, you must delete this file, and it will be recreated.
+### ~/python-google-data/ldap-creds
+This file is needed for LDAP authentication.  Three entries can go in this file in ANY order.
+server:<server name>
+uid:<DN for user ID>
+password:<password for the uid user>
+staffbasedn:<base dn for staff lookups>
+memberbasedn:<base dn for member lookups>
