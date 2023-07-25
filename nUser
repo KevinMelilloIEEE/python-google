@@ -1,0 +1,114 @@
+#!/usr/bin/env python3
+import sys
+import random
+import string
+sys.dont_write_bytecode = True
+from ldap import *
+from googleLib import *
+
+# Global Variables
+userRecord = ['', '', '', '', '', '', '']
+
+def parseLDAP(ldapRecord):
+  global userRecord
+  emailSuffix = '@ieee.org'
+  #Split record into DN \ Attributes
+  for key, value in ldapRecord.items():
+    if key == 'dn':
+      dn = value
+    if key == 'attributes':
+      attributes = value
+  #Parse attributes firstName\lastName\ManagerDN
+  for key, value in attributes.items():
+    if key == 'sn':
+      userRecord[2] = value[0]
+    if key == 'givenName':
+      userRecord[1] = value[0]
+    if key == 'manager':
+      managerDN = value
+  #Parse DN into OU then set OU and email suffix
+  dnArray = dn.split(',')
+  fullOU = dnArray[1]
+  head, split, OU = fullOU.partition('=')
+  if OU.lower() == 'computer society':
+    emailSuffix = '@computer.org'
+    OU = 'Computer.org'
+  elif OU.lower() == 'communications society':
+    emailSuffix = '@comsoc.org'
+    OU = 'Comsoc.org'
+  elif OU.lower() == 'information technology':
+    OU = 'IT'
+  elif OU.lower() == 'standards association':
+    OU = 'Standards'
+  elif OU.lower() == 'sales':
+    OU = 'Sales and Marketing'
+  elif OU.lower() == 'marketing':
+    OU = 'Sales and Marketing'
+  else:
+    OU = OU
+  userRecord[0] = sys.argv[1] + emailSuffix
+  userRecord[3] = sys.argv[1] + '@gapps.ieee.org'
+  userRecord[4] = sys.argv[1].replace(".", "-") + emailSuffix
+  userRecord[5] = '/Staff/' + OU
+  userRecord[6] = OU.replace(" ", "_") + "_staff" + emailSuffix
+
+def main():
+  global userRecord
+  l = len(sys.argv)
+  dn = ''
+  attributes = ''
+  if l == 2:
+    try:
+      dump = ldapSearch(sys.argv[1])
+      ldapRecord = dump[2][0]
+    except:
+      print('Please provide a valid mailalias.  For example:')
+      print('./nUser k.melillo')
+      print(basedn)
+      exit()
+  else:
+    print('Wrong number of arguments specified, require only 1')
+    print('Please provide a valid mailalias.  For example:')
+    print('./nUser k.melillo')
+    exit()
+  parseLDAP(ldapRecord)
+  print('=== Processing Google Create for ' + sys.argv[1])
+  print(f'   Email Address: {userRecord[0]}')
+  print(f'         Aliases: {userRecord[3]} & {userRecord[4]}')
+  print(f'       Full Name: {userRecord[2]}, {userRecord[1]}')
+  print(f'      OU & Group: {userRecord[5]} & {userRecord[6]}')
+  print('')
+  prompt = "[P]rocess or e[X]it > "
+  choice = input(prompt)
+  if choice.lower() == 'p':
+    processChanges()
+  else:
+    print('Exiting with no change')
+
+def generatePassword():
+  letters = string.ascii_lowercase
+  password = ''.join(random.choice(letters) for i in range(16))
+  return password
+
+# This works as is, but thr group displays an extra line..  adding execute() to see if resolves.
+def processChanges():
+  print('Processing Changes')
+  # Create JSON for requests
+  googleRecord = {'primaryEmail': userRecord[0], 'password': generatePassword(), 'name': { 'givenName': userRecord[1], 'familyName': userRecord[2]}, 'orgUnitPath': userRecord[5]}
+  aliasRecordGapps = { 'alias': userRecord[3] }
+  aliasRecordDash = { 'alias': userRecord[4] }
+  # Process the User Creation
+  createStatus = createUser(googleRecord)
+  # Process the group addition (for calendar resources)
+  groupAdd = addToGroup(userRecord[6], userRecord[0])
+  # Process @gapps.ieee.org alias & dash alias
+  aliasDumpGapps = addAlias(userRecord[0], aliasRecordGapps)
+  aliasDumpDash = addAlias(userRecord[0], aliasRecordDash)
+  # Print the results
+  print('Create User Output: ', createStatus)
+  print('@gapps.ieee.org Alias Output: ', aliasDumpGapps)
+  print('DASH Alias Output: ', aliasDumpDash)
+  print('Group Add Output: ', groupAdd)
+
+if __name__ == '__main__':
+    main()
