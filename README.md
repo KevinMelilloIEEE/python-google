@@ -46,6 +46,7 @@ addAlias - add an alias to an account based on a specific email address
 getGroup - get all the groups an email address is a member of
 getMembers - get all the members for a specified group
 addToGroup - add an email address to a group
+nUser - query LDAP for extended info, then create the user in Google
 ```
 ### ~/python-google-data/credentials.json
 This file is created (and downloaded) from the Google Developer Console for your project. ([Python Quickstart](https://developers.google.com/admin-sdk/directory/v1/quickstart/python))
