@@ -1,5 +1,5 @@
 # python-google
-These are the scripts I developed to automate some of my procedures procedures that deal with Google and LDAP
+These are the scripts I developed to automate some of my procedures that deal with Google and LDAP
 
 ### Step 1: Python 3
 You need to make sure you have Python 3 installed. 
